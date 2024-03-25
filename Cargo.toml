@@ -1,8 +1,8 @@
 [package]
-name = "bevy_game" # ToDo
+name = "kanimai"                                 # ToDo
 version = "0.1.0"
 publish = false
-authors = ["Niklas Eicker <git@nikl.me>"] # ToDo: you are the author ;)
+authors = ["Niklas Eicker <git@nikl.me>"]        # ToDo: you are the author ;)
 edition = "2021"
 exclude = ["dist", "build", "assets", "credits"]
 
@@ -13,7 +13,7 @@ members = ["mobile"]
 opt-level = 3
 
 [profile.dev]
-opt-level = 1
+opt-level = 0
 
 # This is used by trunk as it doesn't support custom profiles: https://github.com/trunk-rs/trunk/issues/605
 # xbuild also uses this profile for building android AABs because I couldn't find a configuration for it
@@ -32,9 +32,7 @@ codegen-units = 1
 strip = true
 
 [features]
-dev = [
-    "bevy/dynamic_linking",
-]
+dev = ["bevy/dynamic_linking"]
 
 # All of Bevy's default features exept for the audio related ones (bevy_audio, vorbis), since they clash with bevy_kira_audio
 #   and android_shared_stdcxx, since that is covered in `mobile`
@@ -46,8 +44,8 @@ bevy = { version = "0.13", default-features = false, features = [
     "bevy_scene",
     "bevy_winit",
     "bevy_core_pipeline",
-    "bevy_pbr",
-    "bevy_gltf",
+    # "bevy_pbr",
+    # "bevy_gltf",
     "bevy_render",
     "bevy_sprite",
     "bevy_text",
@@ -70,6 +68,8 @@ webbrowser = { version = "0.8", features = ["hardened"] }
 # keep the following in sync with Bevy's dependencies
 winit = { version = "0.29", default-features = false }
 image = { version = "0.24", default-features = false }
+arr_macro = "0.2.1"
+bevy_editor_pls = "0.8.0"
 
 [build-dependencies]
 embed-resource = "1"

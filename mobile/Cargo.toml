@@ -5,11 +5,11 @@ edition = "2021"
 publish = false
 
 [lib]
-name = "mobile"
+name = "kmai"
 crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
-bevy_game = { path = ".." } # ToDo
+kanimai = { path = ".." }                             # ToDo
 bevy = { version = "0.13", default-features = false }
 
 # As long as Kira doesn't expose a feature for this, we need to enable it
@@ -18,17 +18,21 @@ bevy = { version = "0.13", default-features = false }
 version = "0.15"
 features = ["oboe-shared-stdcxx"]
 
+[target."cfg(target_os = \"android\")".dependencies.bevy]
+version = "*"
+features = ["android_shared_stdcxx"]
+
 [package.metadata.android]
-package = "me.nikl.bevygame"  # ToDo
-apk_name = "BevyGame"  # ToDo same as GAME_OSX_APP_NAME in release workflow
+package = "work.stdpi.kanimai"            # ToDo
+apk_name = "kanimai"                      # ToDo same as GAME_OSX_APP_NAME in release workflow
 assets = "../assets"
 strip = "strip"
 resources = "../build/android/res"
 build_targets = ["aarch64-linux-android"]
 
 [package.metadata.android.sdk]
-target_sdk_version = 33
+target_sdk_version = 34
 
 [package.metadata.android.application]
 icon = "@mipmap/icon"
-label = "Bevy Game" # ToDo
+label = "kanimai"     # ToDo

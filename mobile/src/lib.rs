@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy::window::WindowMode;
-use bevy_game::GamePlugin; // ToDo: Replace bevy_game with your new crate name.
+use kanimai::config::config_window;
+use kanimai::GamePlugin; // ToDo: Replace bevy_game with your new crate name.
 
 #[bevy_main]
 fn main() {
@@ -10,7 +11,8 @@ fn main() {
                 primary_window: Some(Window {
                     resizable: false,
                     mode: WindowMode::BorderlessFullscreen,
-                    ..default()
+                    present_mode: bevy::window::PresentMode::Fifo,
+                    ..config_window()
                 }),
                 ..default()
             }),
