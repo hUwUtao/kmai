@@ -1,7 +1,7 @@
 // disable console on windows for release builds
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use bevy::asset::AssetMetaCheck;
+// use bevy::asset::AssetMetaCheck;
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 use bevy::winit::WinitWindows;
@@ -20,8 +20,8 @@ fn main() {
     let mut app = App::new();
 
     app.insert_resource(Msaa::Off)
-        .insert_resource(AssetMetaCheck::Never)
-        .insert_resource(ClearColor(Color::rgb(0.1, 0.1, 0.1)))
+        // .insert_resource(AssetMetaCheck::Never)
+        .insert_resource(ClearColor(Color::srgb(0.1, 0.1, 0.1)))
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
                 // Bind to canvas included in `index.html`

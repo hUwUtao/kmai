@@ -37,10 +37,11 @@ dev = ["bevy/dynamic_linking"]
 # All of Bevy's default features exept for the audio related ones (bevy_audio, vorbis), since they clash with bevy_kira_audio
 #   and android_shared_stdcxx, since that is covered in `mobile`
 [dependencies]
-bevy = { version = "0.13", default-features = false, features = [
+bevy = { version = "0.14", default-features = false, features = [
+    "async-io",
     "animation",
     "bevy_asset",
-    "bevy_gilrs",
+    # "bevy_gilrs",
     "bevy_scene",
     "bevy_winit",
     "bevy_core_pipeline",
@@ -50,26 +51,29 @@ bevy = { version = "0.13", default-features = false, features = [
     "bevy_sprite",
     "bevy_text",
     "bevy_ui",
-    "multi-threaded",
+    # "multi-threaded",
     "png",
-    "hdr",
+    "ktx2",
+    "zstd",
+    # "hdr",
     "x11",
     "bevy_gizmos",
-    "tonemapping_luts",
+    # "tonemapping_luts",
     "default_font",
-    "webgl2",
+    # "webgl2",
     "bevy_debug_stepping",
 ] }
-bevy_kira_audio = { version = "0.19" }
-bevy_asset_loader = { version = "0.20" }
+bevy_kira_audio = { version = "0.20" }
+bevy_asset_loader = { version = "0.21" }
 rand = { version = "0.8.3" }
-webbrowser = { version = "0.8", features = ["hardened"] }
+webbrowser = { version = "1", features = ["hardened"] }
+async-channel = "*"
 
 # keep the following in sync with Bevy's dependencies
-winit = { version = "0.29", default-features = false }
-image = { version = "0.24", default-features = false }
+winit = { version = "0.30", default-features = false }
+image = { version = "0.25", default-features = false }
 arr_macro = "0.2.1"
-bevy_editor_pls = "0.8.0"
+bevy_editor_pls = "0.8"
 
 [build-dependencies]
-embed-resource = "1"
+embed-resource = "2"

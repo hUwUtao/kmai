@@ -18,5 +18,5 @@ fn main() {
             }),
             GamePlugin,
         ))
-        .run()
+        .run();
 }

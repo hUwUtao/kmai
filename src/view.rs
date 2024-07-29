@@ -46,7 +46,7 @@ fn setup(mut commands: Commands, asset_server: ResMut<AssetServer>) {
     ));
     commands.spawn(SpriteBundle {
         transform: Transform::from_translation(vec3(0.0, 0.0, -10.0)),
-        texture: asset_server.load("textures/outlines/Outline_03.png").into(),
+        texture: asset_server.load("textures/outlines/sensors.png").into(),
         ..default()
     });
     let style = TextSection::from_style(TextStyle {

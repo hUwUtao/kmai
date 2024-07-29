@@ -330,11 +330,11 @@ fn draw_gizmo(mut gizmos: Gizmos, hit_frame: Res<SensorFrameAll>) {
             rot,
             scl,
             if hit {
-                Color::rgb(1.0, 1.0, 1.0)
+                Color::srgb(1.0, 1.0, 1.0)
             } else {
-                Color::rgba(0.5, 0.5, 0.5, 0.2)
+                Color::srgba(0.5, 0.5, 0.5, 0.2)
             },
         );
     }
-    gizmos.circle_2d(Vec2::ZERO, 540.0, Color::rgb(1.0, 1.0, 1.0));
+    gizmos.circle_2d(Vec2::ZERO, 540.0, Color::srgb(1.0, 1.0, 1.0));
 }

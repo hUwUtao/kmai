@@ -1,22 +1,18 @@
-use bevy_kira_audio::prelude::*;
-use bevy::{prelude::*, transform::commands};
+use bevy::prelude::*;
+// use bevy_kira_audio::prelude::*;
 
 use crate::GameState;
+
+pub mod lanes;
+pub mod timeline;
 
 pub struct PlayPlugin;
 
 impl Plugin for PlayPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(OnEnter(GameState::Smash), setup);
+        app.add_plugins(lanes::TapNotePlugin)
+            .add_systems(OnEnter(GameState::Smash), setup);
     }
 }
 
 fn setup() {}
-
-#[derive(Bundle)]
-struct Note {}
-
-
-fn debug_spawn_note(mut commands: Commands, kbd: Res<ButtonInput<KeyCode>>) {
-
-}

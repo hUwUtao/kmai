@@ -12,7 +12,7 @@ mod play;
 mod sensor;
 mod view;
 
-mod effect;
+// mod effect;
 
 pub mod config;
 
@@ -43,7 +43,7 @@ pub struct GamePlugin;
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         app.init_state::<GameState>()
-            .add_plugins((ViewPlugin, SensorPlugin, effect::EffectPlugin));
+            .add_plugins((ViewPlugin, SensorPlugin, play::PlayPlugin));
 
         app.add_plugins((
             FrameTimeDiagnosticsPlugin,
