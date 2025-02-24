@@ -168,7 +168,7 @@ impl TapNotePlugin {
                     .with_translation(vec3(0.0, 0.0, -9.0))
                     .with_scale(Vec3::splat(1080.)),
                 material: materials.add(NoteRenderMaterial {
-                    atlas: Some(asset_server.load("textures/hit/atlas.png")),
+                    atlas: Some(asset_server.load("textures/hit/atlas_repacked.png")),
                     offset: 0,
                     ttr: 690,
                 }),

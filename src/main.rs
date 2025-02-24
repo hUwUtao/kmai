@@ -12,7 +12,7 @@ use bevy::DefaultPlugins;
 use bevy_editor_pls::prelude::*;
 
 use kanimai::config::config_window;
-use kanimai::GamePlugin; // ToDo: Replace bevy_game with your new crate name.
+use kanimai::GamePlugin;
 use std::io::Cursor;
 use winit::window::Icon;
 
@@ -20,13 +20,14 @@ fn main() {
     let mut app = App::new();
 
     app.insert_resource(Msaa::Off)
-        // .insert_resource(AssetMetaCheck::Never)
         .insert_resource(ClearColor(Color::srgb(0.1, 0.1, 0.1)))
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
-                // Bind to canvas included in `index.html`
+                #[cfg(target_os = "windows")]
+                mode: bevy::window::WindowMode::Fullscreen,
+                #[cfg(target_family = "wasm")]
                 canvas: Some("#bevy".to_owned()),
-                // Tells wasm not to override default event handling, like F5 and Ctrl+R
+                #[cfg(target_family = "wasm")]
                 prevent_default_event_handling: false,
                 ..config_window()
             }),
@@ -34,6 +35,9 @@ fn main() {
         }))
         .add_plugins(GamePlugin)
         .add_systems(Startup, set_window_icon);
+
+    #[cfg(target_os = "windows")]
+    app.add_systems(Update, toggle_window_mode);
 
     #[cfg(debug_assertions)]
     #[cfg(feature = "dev")]
@@ -61,4 +65,20 @@ fn set_window_icon(
         let icon = Icon::from_rgba(rgba, width, height).unwrap();
         primary.set_window_icon(Some(icon));
     };
+}
+#[cfg(target_os = "windows")]
+fn toggle_window_mode(
+    keyboard: Res<ButtonInput<KeyCode>>,
+    mut window_query: Query<&mut Window, With<PrimaryWindow>>,
+) {
+    if (keyboard.pressed(KeyCode::AltLeft) || keyboard.pressed(KeyCode::AltRight))
+        && keyboard.just_pressed(KeyCode::Enter)
+    {
+        if let Ok(mut window) = window_query.get_single_mut() {
+            window.mode = match window.mode {
+                bevy::window::WindowMode::Windowed => bevy::window::WindowMode::Fullscreen,
+                _ => bevy::window::WindowMode::Windowed,
+            };
+        }
+    }
 }

@@ -23,16 +23,21 @@ version = "*"
 features = ["android_shared_stdcxx"]
 
 [package.metadata.android]
-package = "work.stdpi.kanimai"            # ToDo
-apk_name = "kanimai"                      # ToDo same as GAME_OSX_APP_NAME in release workflow
+package = "work.stdpi.kanimai"
+apk_name = "kanimai"
 assets = "../assets"
-strip = "strip"
+strip = false
 resources = "../build/android/res"
-build_targets = ["aarch64-linux-android"]
+build_targets = [
+    "aarch64-linux-android",
+    "armv7-linux-androideabi",
+    "i686-linux-android",
+    "x86_64-linux-android",
+]
 
 [package.metadata.android.sdk]
 target_sdk_version = 34
 
 [package.metadata.android.application]
 icon = "@mipmap/icon"
-label = "kanimai"     # ToDo
+label = "kanimai"

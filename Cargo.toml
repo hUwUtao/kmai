@@ -6,6 +6,10 @@ authors = ["Niklas Eicker <git@nikl.me>"]        # ToDo: you are the author ;)
 edition = "2021"
 exclude = ["dist", "build", "assets", "credits"]
 
+[lib]
+name = "kanimai"
+crate-type = ["staticlib", "cdylib"]
+
 [workspace]
 members = ["mobile"]
 

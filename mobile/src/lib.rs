@@ -4,6 +4,7 @@ use kanimai::config::config_window;
 use kanimai::GamePlugin; // ToDo: Replace bevy_game with your new crate name.
 
 #[bevy_main]
+#[no_mangle]
 fn main() {
     App::new()
         .add_plugins((

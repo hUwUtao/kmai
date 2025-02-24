@@ -10,12 +10,6 @@ fn uv_atlas(i: u32, c: vec2<u32>, i_scl: vec2<u32>) -> vec2<u32> {
     return uv_atlas_maxrect(i, c) * i_scl;
 }
 
-// y up, f maths
-fn deg2vec(d: f32) -> vec2<f32> {
-    let rad = -radians(d);
-    return vec2<f32>(sin(rad), cos(rad));
-}
-
 fn pack_note(a: u32, b: u32, c: u32) -> u32 {
     return (a << 24) | (b << 19) | c;
 }
